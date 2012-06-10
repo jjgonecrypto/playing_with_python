@@ -1,4 +1,9 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls.defaults import *
+
+from django.contrib import admin
+admin.autodiscover()
+
+#import views
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -6,7 +11,7 @@ from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'playing_with_python.views.home', name='home'),
+    url(r'^$', 'playing_with_python.views.home.homepage', name='home'),
     # url(r'^playing_with_python/', include('playing_with_python.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
