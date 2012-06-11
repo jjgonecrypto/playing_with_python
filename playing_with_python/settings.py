@@ -86,7 +86,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+   # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 
@@ -143,7 +143,7 @@ PIPELINE_CSS = {}
 PIPELINE_JS = {
     'temp': {
         'source_filenames': (
-          'coffee/*.coffee'
+          'coffee/*.coffee',
         ),
         'output_filename': 'js/temp.js',
     }
