@@ -138,7 +138,17 @@ PIPELINE_COMPILERS = (
   'pipeline.compilers.stylus.StylusCompiler',
 )
 
-PIPELINE_CSS = {}
+PIPELINE_CSS = {
+    'custom': {
+        'source_filenames': (
+          'stylus/*.styl',
+        ),
+        'output_filename': 'css/custom.css',
+        'extra_context': {
+            'media': 'screen,projection',
+        },
+    },
+}
 
 PIPELINE_JS = {
     'temp': {
