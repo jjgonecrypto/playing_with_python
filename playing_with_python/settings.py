@@ -1,5 +1,7 @@
 # Django settings for playing_with_python project.
 import os
+local_path = lambda path: os.path.join(os.path.dirname(__file__), path)
+
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -51,18 +53,21 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = local_path('media/')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
+
+
+STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = local_path('static/')
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -70,6 +75,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
+    local_path('assets/'),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -80,8 +86,9 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+   # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
+
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '@%44@+^uuel0=t570*17i1l07-3_mx6l*&amp;+g_@=jhm9i^(1%=f'
@@ -109,7 +116,7 @@ ROOT_URLCONF = 'playing_with_python.urls'
 WSGI_APPLICATION = 'playing_with_python.wsgi.application'
 
 TEMPLATE_DIRS = (
-    SITE_ROOT + '/templates/',
+    local_path('templates'),
 )
 
 INSTALLED_APPS = (
@@ -119,11 +126,39 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'pipeline',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
+
+PIPELINE_COMPILERS = (
+  'pipeline.compilers.coffee.CoffeeScriptCompiler',
+  'pipeline.compilers.stylus.StylusCompiler',
+)
+
+PIPELINE_CSS = {
+    'custom': {
+        'source_filenames': (
+          'stylus/*.styl',
+        ),
+        'output_filename': 'css/custom.css',
+        'extra_context': {
+            'media': 'screen,projection',
+        },
+    },
+}
+
+PIPELINE_JS = {
+    'temp': {
+        'source_filenames': (
+          'coffee/*.coffee',
+        ),
+        'output_filename': 'js/temp.js',
+    }
+}
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
