@@ -5,19 +5,35 @@
   <meta name="description" content="site to play around with python" />
 
   <title>playing with python</title>
+  
+  <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/base/jquery-ui.css" type="text/css" rel="Stylesheet" />
+
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+
+
   {% load compressed %}
 
   {% compressed_css 'deps' %}
   {% compressed_css 'custom' %}
 </head>
 <body>
-  <h3>Spotify lookup</h3>
+  <header>
+    <h1>spotify playtml5</h1>
+  </header>
+  
+  <section class="content">
+    <fieldset class="search">
+      <ul class="inline">
+        <li>search: </li>
+        <li><input type="text" class="spotify-lookup" /></li>
+      </ul>
 
-  <ul>
-    <li></li>
-  </ul>
+    </fieldset>
 
-  {% compressed_js 'temp' %}
+  </section>
+
+  <footer>written by justin j. moses</footer>
+    {% compressed_js 'temp' %}
 </body>
 </html>
