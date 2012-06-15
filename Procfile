@@ -1,1 +1,1 @@
-web: python manage.py
+web: python webapp/manage.py runserver 0.0.0.0:$PORT --settings=settings_production
