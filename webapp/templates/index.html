@@ -22,16 +22,28 @@
     <h1>spotify playtml5</h1>
   </header>
   
-  <section class="content">
-    <fieldset class="search">
+  <section class="search">
+    <fieldset>
       <ul class="inline">
         <li>search: </li>
         <li><input type="text" class="spotify-lookup" /></li>
       </ul>
-
     </fieldset>
-
   </section>
+
+  <div class="two-column">
+    <div>
+      <section class="results">
+        results go here...
+      </section>
+    </div>
+    <div>
+      <section class="play-controls">
+        <iframe src="https://embed.spotify.com/?uri=spotify:track:4bz7uB4edifWKJXSDxwHcs" frameborder="0" allowtransparency="true"></iframe>
+
+      </section>
+    </div>
+  </div>
 
   <footer>written by justin j. moses</footer>
     {% compressed_js 'temp' %}
