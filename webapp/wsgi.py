@@ -1,5 +1,5 @@
 """
-WSGI config for playing_with_python project.
+WSGI config for project.
 
 This module contains the WSGI application used by Django's development server
 and any production WSGI deployments. It should expose a module-level variable
@@ -15,7 +15,7 @@ framework.
 """
 import os
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "playing_with_python.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "example.settings_production")
 
 # This application object is used by any WSGI server configured to use this
 # file. This includes Django's development server, if the WSGI_APPLICATION
