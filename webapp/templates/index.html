@@ -1,13 +1,22 @@
+<!DOCTYPE html>
 <html>
 <head>
-  <title>django-coffee-stylus-heroku</title>
+  <meta charset="utf-8" />
+  <meta name="description" content="site to play around with python" />
+
+  <title>playing with python</title>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   {% load compressed %}
 
+  {% compressed_css 'deps' %}
   {% compressed_css 'custom' %}
 </head>
 <body>
-  <h3>Welcome</h3>
+  <h3>Spotify lookup</h3>
+
+  <ul>
+    <li></li>
+  </ul>
 
   {% compressed_js 'temp' %}
 </body>
