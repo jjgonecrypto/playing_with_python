@@ -167,8 +167,10 @@ PIPELINE_JS = {
     'app': {
         'source_filenames': (
           'coffee/*.coffee',
+          'coffee/app/*.coffee',
+          'coffee/app/*/*.coffee',
         ),
-        'output_filename': 'js/app.js',
+        'output_filename': 'app.js',
     }
 }
 
