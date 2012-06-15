@@ -1,4 +1,4 @@
-define ['text!./Container.html'], (viewTemplate) ->
+define ['text!./container.html'], (viewTemplate) ->
   Backbone.View.extend
     initialize: ->
 
