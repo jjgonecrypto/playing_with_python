@@ -1,7 +1,62 @@
+$font-size = 12pt
+$embed-width = 300px
+$embed-height = 380px 
+
 body
+  font-family 'Helvetica Neue', Helvetica, Arial, sans-serif
+  font-size $font-size
   background-color black
   margin 0 
-  padding 15
+  padding 15px
+  color white
+
+h1
+  font-size 2em
+  color lime
   
+.content
+  margin-top 20px
+
 .highlight
-  color red
+  color red 
+
+ul.inline
+  > li 
+    display: inline-block
+
+.search
+  fieldset
+    padding 5px 0px
+    border-top 1px solid #444
+    border-bottom 1px solid #444
+    input
+      font-size $font-size
+
+.loading
+  background url(../img/ajax-loader.gif) no-repeat center
+  width 16px
+  height 16px
+  display none
+
+.two-column 
+  > div
+    float: left
+    width: 50%
+
+.results
+  margin 5px 0px
+  min-height $embed-height
+  background-color #333
+  color #999
+
+.play-controls
+  padding 5px 0px 
+  iframe
+    width $embed-width
+    height $embed-height
+
+footer
+  position fixed
+  bottom 0
+  right 0
+  color #444 

@@ -76,6 +76,7 @@ STATIC_URL = '/static/'
 # Additional locations of static files
 STATICFILES_DIRS = (
     local_path('assets/'),
+    local_path('3rd/'),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -139,6 +140,12 @@ PIPELINE_COMPILERS = (
 )
 
 PIPELINE_CSS = {
+    'deps': {
+        'source_filenames': (
+          'css/reset.css',
+        ),
+        'output_filename': 'css/deps.css',
+    },
     'custom': {
         'source_filenames': (
           'stylus/*.styl',
