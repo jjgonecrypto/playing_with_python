@@ -158,11 +158,24 @@ PIPELINE_CSS = {
 }
 
 PIPELINE_JS = {
-    'temp': {
+    'deps': {
         'source_filenames': (
-          'coffee/*.coffee',
+            'js/underscore-min.js',
+            'js/backbone-min.js'
+        )
+    },
+    'helper' : {
+        'source_filenames': (
+            'coffee/base.coffee',
+        )
+    },
+    'app': {
+        'source_filenames': (
+          'coffee/main.coffee',
+          'coffee/app/*.coffee',
+          'coffee/app/*/*.coffee',
         ),
-        'output_filename': 'js/temp.js',
+        'output_filename': 'app.js',
     }
 }
 
