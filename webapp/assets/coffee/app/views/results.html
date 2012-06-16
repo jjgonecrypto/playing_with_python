@@ -1,0 +1,12 @@
+<ul>
+  <% _.each(entries, function(entry){ %>
+    <% if (entry.type === 'tracks') { %>
+      <li>
+        <a href="#" class="play" data-href="<%= entry.href %>"><%- entry.name %></a> 
+        by <span class="artist"><%- entry.artist %></span>
+      </li>
+    <% } else { %>
+      <li><%- entry.name %></li>
+    <% } %>
+  <% }); %>
+</ul>
