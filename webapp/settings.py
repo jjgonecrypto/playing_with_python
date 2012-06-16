@@ -164,11 +164,6 @@ PIPELINE_JS = {
             'js/backbone-min.js'
         )
     },
-    'helper' : {
-        'source_filenames': (
-            'coffee/base.coffee',
-        )
-    },
     'app': {
         'source_filenames': (
           'coffee/main.coffee',

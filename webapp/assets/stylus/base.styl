@@ -39,21 +39,65 @@ ul.inline
   display none
 
 .two-column 
-  > div
+  overflow hidden
+  > section
     float: left
     width: 50%
 
 .results
   margin 5px 0px
   min-height $embed-height
-  background-color #333
-  color #999
+  color #666
+  a
+    color lime
+  .artist
 
-.play-controls
+  li 
+    padding 5px 0px
+    font-size 90%
+  li:nth-child(odd) 
+    background-color #222
+
+.player
   padding 5px 0px 
-  iframe
-    width $embed-width
-    height $embed-height
+  .player-controls
+    float left
+  .now-playing
+    float left
+    width 250
+    display none
+    color #666
+    .track
+      color white
+    .artist
+      color #888
+      font-weight bold
+      &:before
+        content 'by '
+        font-weight normal
+    .album 
+      color #333
+  .progress-bar
+    height 10px
+  .btn
+    width 73px
+    height 71px
+    border 0
+    cursor pointer
+    opacity 0.9
+    &:hover
+      opacity 1
+    &:active
+      opacity 0.5
+    &.play
+      background-image url(../img/button-play.png)
+    &.prev
+      background-image url(../img/button-prev.png)
+    &.stop
+      background-image url(../img/button-stop.png)
+    &.next
+      background-image url(../img/button-next.png)
+      
 
 footer
   position fixed
