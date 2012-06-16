@@ -2,7 +2,7 @@ define ['text!./search.html','collections/entries', 'libs/eventbus'], (viewTempl
   Backbone.View.extend
     initialize: ->
       @lastRequest = undefined
-      @entries = new Entries()
+      @entries = @options.entries
       
       bus.on 'search:start', (evt) =>
         @$('.loading').show()
