@@ -43,5 +43,6 @@ define ['models/entry', 'libs/eventbus'], (Entry, bus) ->
           href: entry.href
           artist: entry.artists?[0]?.name ? ''
           album: entry.album?.name ? ''
+          length: entry.length
         console.log "add #{entry.name}"
       @trigger "loaded"

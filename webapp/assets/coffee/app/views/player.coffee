@@ -3,6 +3,8 @@ define ['text!./player.html', 'libs/eventbus'], (viewTemplate, bus) ->
     initialize: ->
       @playing = false
       @track = undefined
+      @interval = undefined
+      @elapsed = 0
       @entries = @options.entries
       bus.on 'player:play', (trackHref) =>
         return if @track?.get('href') is trackHref
@@ -24,11 +26,18 @@ define ['text!./player.html', 'libs/eventbus'], (viewTemplate, bus) ->
       
       @playing = true
       @track = entry
-
+      @remaining = entry.get('length')
+      @interval = setInterval () =>
+        @stop() if @elapsed >= @track.get('length') 
+        @elapsed += 1
+        @$('.progress-bar').progressbar
+          value: @elapsed / @track.get('length') * 100
+      , 1000  
       #todo: set timeout
         #progress bar
 
     stop: ->
+      clearInterval @interval
       @$('.now-playing').fadeTo(250, 0.5)
       @$('.info').html "Stopped: "
       @$('.btn.stop').removeClass('stop').addClass('play')

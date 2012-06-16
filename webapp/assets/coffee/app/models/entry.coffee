@@ -6,4 +6,5 @@ define [], () ->
       type: ""
       artist: ""
       album: ""
+      length: 1
 
