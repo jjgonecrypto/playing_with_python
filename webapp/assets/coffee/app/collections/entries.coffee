@@ -13,7 +13,7 @@ define ['models/entry', 'libs/eventbus'], (Entry, bus) ->
       @lastRequest.abort() if @lastRequest
 
       loadSequentially = (types, index) =>
-        return if types.length <= index
+        return bus.trigger('search:stop') if types.length <= index
 
         console.log "GET http://ws.spotify.com/search/1/#{types[index]}.json?#{query}"
         
@@ -21,10 +21,8 @@ define ['models/entry', 'libs/eventbus'], (Entry, bus) ->
           url: "http://ws.spotify.com/search/1/#{types[index]}.json?#{query}"
         .done (data) =>
           @populate data, types[index]+"s"
-          bus.trigger('search:stop')
           loadSequentially(types, index+1)
         .fail (req, err) =>
-          bus.trigger('search:stop')
           loadSequentially(types, index+1)
 
       loadSequentially(['track', 'artist', 'album'], 0)

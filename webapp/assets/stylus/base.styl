@@ -46,14 +46,35 @@ ul.inline
 .results
   margin 5px 0px
   min-height $embed-height
-  background-color #333
-  color #999
+  color yellow
+  li 
+    padding 5px 0px
+    font-size 90%
+  li:nth-child(odd) 
+    background-color #222
 
-.play-controls
+.player
   padding 5px 0px 
-  iframe
-    width $embed-width
-    height $embed-height
+  
+  .btn
+    width 73px
+    height 71px
+    border 0
+    cursor pointer
+    opacity 0.9
+    &:hover
+      opacity 1
+    &:active
+      opacity 0.5
+    &.play
+      background-image url(../img/button-play.png)
+    &.prev
+      background-image url(../img/button-prev.png)
+    &.stop
+      background-image url(../img/button-stop.png)
+    &.next
+      background-image url(../img/button-next.png)
+      
 
 footer
   position fixed
