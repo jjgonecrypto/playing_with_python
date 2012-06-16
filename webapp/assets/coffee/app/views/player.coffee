@@ -27,12 +27,15 @@ define ['text!./player.html', 'libs/eventbus'], (viewTemplate, bus) ->
       @playing = true
       @track = entry
       @remaining = entry.get('length')
-      @interval = setInterval () =>
+      eachSecond = () =>
         @stop() if @elapsed >= @track.get('length') 
         @elapsed += 1
         @$('.progress-bar').progressbar
           value: @elapsed / @track.get('length') * 100
-      , 1000  
+      
+      @interval = setInterval eachSecond, 1000
+      eachSecond()
+        
       #todo: set timeout
         #progress bar
 
