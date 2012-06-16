@@ -6,3 +6,7 @@
         `export PP_DB=...`
         `export POSTGRES_USER=...`
         `export POSTGRES_PASS=...` 
+
+##pushing to heroku
+
+* see instruction on [https://github.com/justinjmoses/django-coffee-stylus-heroku](https://github.com/justinjmoses/django-coffee-stylus-heroku)
