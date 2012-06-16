@@ -13,5 +13,5 @@ define [
       @$el.html viewTemplate
       @$('.search').html new Search({entries: @entries}).render().el
       @$('.results').html new Results({entries: @entries}).render().el
-      @$('.player').html new Player().render().el
+      @$('.player').html new Player({entries: @entries}).render().el
       @

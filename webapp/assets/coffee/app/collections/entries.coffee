@@ -15,10 +15,12 @@ define ['models/entry', 'libs/eventbus'], (Entry, bus) ->
       loadSequentially = (types, index) =>
         return bus.trigger('search:stop') if types.length <= index
 
-        console.log "GET http://ws.spotify.com/search/1/#{types[index]}.json?#{query}"
+        url = "http://ws.spotify.com/search/1/#{types[index]}.json?#{query}"
+        
+        console.log "GET #{url}"
         
         @lastRequest = $.ajax
-          url: "http://ws.spotify.com/search/1/#{types[index]}.json?#{query}"
+          url: url
         .done (data) =>
           @populate data, types[index]+"s"
           loadSequentially(types, index+1)

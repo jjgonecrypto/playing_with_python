@@ -1,7 +1,7 @@
 define ['text!./search.html','collections/entries', 'libs/eventbus'], (viewTemplate, Entries, bus) ->
   Backbone.View.extend
     initialize: ->
-      @lastRequest = undefined
+      @lastQuery = undefined
       @entries = @options.entries
       
       bus.on 'search:start', (evt) =>
@@ -14,9 +14,10 @@ define ['text!./search.html','collections/entries', 'libs/eventbus'], (viewTempl
       @$el.html viewTemplate
       @  
 
-    onKeyPress: (evt) ->
-      return if @$(evt.target).val().length < 3
+    search: (evt) ->
+      return if @$(evt.target).val().length < 3 or @lastQuery is @$(evt.target).val()
       @entries.load @$(evt.target).serialize()
+      @lastQuery = @$(evt.target).val() 
 
     playSong: (trackId) ->
       #return if @playing is trackId
@@ -24,5 +25,5 @@ define ['text!./search.html','collections/entries', 'libs/eventbus'], (viewTempl
       #@playing = trackId
       
     events: 
-      'keyup .spotify-lookup': 'onKeyPress'
-      'change .spotify-lookup': 'onKeyPress'
+      'keyup .spotify-lookup': 'search'
+      'change .spotify-lookup': 'search'

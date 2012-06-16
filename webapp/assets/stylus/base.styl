@@ -46,7 +46,11 @@ ul.inline
 .results
   margin 5px 0px
   min-height $embed-height
-  color yellow
+  color #666
+  a
+    color lime
+  .artist
+
   li 
     padding 5px 0px
     font-size 90%
@@ -55,7 +59,22 @@ ul.inline
 
 .player
   padding 5px 0px 
-  
+  .player-controls
+    float left
+  .now-playing
+    float left
+    display none
+    color #666
+    .track
+      color white
+    .artist
+      color #888
+      font-weight bold
+      &:before
+        content 'by '
+        font-weight normal
+    .album 
+      color #333
   .btn
     width 73px
     height 71px
