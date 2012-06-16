@@ -12,14 +12,22 @@ define ['models/entry', 'libs/eventbus'], (Entry, bus) ->
 
       @lastRequest.abort() if @lastRequest
 
-      @lastRequest = $.ajax
-        url: 'http://ws.spotify.com/search/1/track.json?' + query
-      .done (data) =>
-        @populate data, 'tracks'
-        #@playSong(data.tracks[0].href) unless !data.tracks.length
-        bus.trigger('search:stop')
-      .fail (req, err) =>
-        bus.trigger('search:stop')
+      loadSequentially = (types, index) =>
+        return if types.length <= index
+
+        console.log "GET http://ws.spotify.com/search/1/#{types[index]}.json?#{query}"
+        
+        @lastRequest = $.ajax
+          url: "http://ws.spotify.com/search/1/#{types[index]}.json?#{query}"
+        .done (data) =>
+          @populate data, types[index]+"s"
+          bus.trigger('search:stop')
+          loadSequentially(types, index+1)
+        .fail (req, err) =>
+          bus.trigger('search:stop')
+          loadSequentially(types, index+1)
+
+      loadSequentially(['track', 'artist', 'album'], 0)
 
     populate: (data, type) ->
       @remove @where
@@ -33,7 +41,7 @@ define ['models/entry', 'libs/eventbus'], (Entry, bus) ->
           name: entry.name
           type: type 
           href: entry.href
-          artist: entry.artists[0].name ? ''
-          album: entry.album.name ? ''
-
+          artist: entry.artists?[0]?.name ? ''
+          album: entry.album?.name ? ''
+        console.log "add #{entry.name}"
       @trigger "loaded"
