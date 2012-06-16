@@ -1,3 +1,5 @@
-<div>
-  results go here...
-</div>
+<ul>
+  <% _.each(entries, function(entry){ %>
+    <li><%- entry.name %> [<%- entry.artist %>] (<%- entry.type %>)</li>
+  <% }); %>
+</ul>

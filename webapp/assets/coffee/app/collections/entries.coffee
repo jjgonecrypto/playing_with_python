@@ -24,6 +24,8 @@ define ['models/entry', 'libs/eventbus'], (Entry, bus) ->
     populate: (data, type) ->
       @remove @where
         type: type
+
+      @trigger "cleared", type
         
       top5 = _.first(data[type], 5)
       _.each top5, (entry) =>
@@ -31,4 +33,7 @@ define ['models/entry', 'libs/eventbus'], (Entry, bus) ->
           name: entry.name
           type: type 
           href: entry.href
-      console.log @length
+          artist: entry.artists[0].name ? ''
+          album: entry.album.name ? ''
+
+      @trigger "loaded"

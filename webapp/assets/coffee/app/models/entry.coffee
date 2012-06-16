@@ -4,3 +4,6 @@ define [], () ->
       name: ""
       href: ""
       type: ""
+      artist: ""
+      album: ""
+
