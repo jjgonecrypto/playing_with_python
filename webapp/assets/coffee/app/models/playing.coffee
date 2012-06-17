@@ -10,6 +10,7 @@ define ['libs/eventbus'], (bus) ->
 
       bus.on 'playing:set', (track) =>
         return if @get('track') is track
+        @stop() if @get('is_playing') is true
         @set 'track', track
         @set 'is_playing', true
         @set 'position', -1
