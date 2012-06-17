@@ -14,14 +14,15 @@ SITE_ROOT = os.path.abspath(os.path.dirname(__file__))
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ['PP_DB'],
-        'USER': os.environ['POSTGRES_USER'],
-        'PASSWORD': os.environ['POSTGRES_PASS'],
+if os.environ.get('PP_DB') is not None:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.environ['PP_DB'],
+            'USER': os.environ['POSTGRES_USER'],
+            'PASSWORD': os.environ['POSTGRES_PASS'],
+        }
     }
-}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
