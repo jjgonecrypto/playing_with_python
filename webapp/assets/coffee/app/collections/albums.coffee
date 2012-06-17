@@ -1,23 +1,21 @@
-define ['models/track', 'services/spotify'], (Track, spotify) ->
+define ['models/album', 'services/spotify'], (Album, spotify) ->
   Backbone.Collection.extend
-    model: Track
+    model: Album
 
     initialize: ->
 
     load: (query, callback) ->
 
-      spotify.load query, 'track', (err, data) =>
+      spotify.load query, 'album', (err, data) =>
         return callback(err) if err
 
         @reset() 
 
-        top5 = _.first(data.tracks, 5)
+        top5 = _.first(data.albums, 5)
         _.each top5, (entry) =>
           @add 
             name: entry.name
             href: entry.href
             artist: entry.artists?[0]?.name ? ''
-            album: entry.album?.name ? ''
-            length: entry.length
         @trigger "loaded"
         callback()

@@ -2,9 +2,8 @@ define ['text!./search.html', 'libs/eventbus'], (viewTemplate, bus) ->
   Backbone.View.extend
     initialize: ->
       @lastQuery = undefined
-      @tracks = @options.entries.tracks
+      @entries = @options.entries
       
-
     render: ->
       @$el.html viewTemplate
       @  
@@ -16,17 +15,17 @@ define ['text!./search.html', 'libs/eventbus'], (viewTemplate, bus) ->
 
       @$('.loading').show()
 
-      @tracks.load query, (err) =>
-        console.log(err) if err
-        #@artists.load query, (err) =>
-        #  console.log(err) if err
-        #  @albums.load query, (err) =>
-        #    console.log(err) if err
-        #    @$('.loading').hide()
-        @$('.loading').hide()
-
       @lastQuery = @$(evt.target).val() 
+      bus.trigger "search:query", @lastQuery 
 
+      @entries.tracks.load query, (err) =>
+        console.log(err) if err
+        @entries.artists.load query, (err) =>
+          console.log(err) if err
+          @entries.albums.load query, (err) =>
+            console.log(err) if err
+            @$('.loading').hide()
+        
     events: 
       'keyup .spotify-lookup': 'search'
       'change .spotify-lookup': 'search'

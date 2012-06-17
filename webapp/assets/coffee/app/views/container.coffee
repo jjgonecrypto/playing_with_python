@@ -3,16 +3,18 @@ define [
   'views/results' 
   'views/player'
   'views/search'
-  'collections/tracks'
   'collections/entries'
+  'collections/tracks'
+  'collections/artists'
+  'collections/albums'
   'models/playing'
-], (viewTemplate, Results, Player, Search, Tracks, entries, Playing) ->
+], (viewTemplate, Results, Player, Search, entries, Tracks, Artists, Albums, Playing) ->
   Backbone.View.extend
     initialize: ->
       entries.set 
         tracks: new Tracks()
-        artists: new Tracks()
-        albums: new Tracks()
+        artists: new Artists()
+        albums: new Albums()
 
       @playing = new Playing()
      

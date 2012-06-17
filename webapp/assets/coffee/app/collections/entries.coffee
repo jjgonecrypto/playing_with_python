@@ -7,7 +7,8 @@ define [], () ->
     @artists = collections.artists
     @albums = collections.albums
 
-    @tracks.on "loaded", (evt) =>
-      @trigger "loaded"
+    @tracks.on "loaded", (evt) => @trigger "loaded"
+    @artists.on "loaded", (evt) => @trigger "loaded"
+    @albums.on "loaded", (evt) => @trigger "loaded"
 
   return dispatcher
