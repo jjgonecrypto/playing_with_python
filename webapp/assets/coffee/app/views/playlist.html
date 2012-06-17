@@ -3,6 +3,6 @@
 </div>
 <ul>
   <% _.each(playlists, function(pl) { %>
-    <li>here: <%- pl.name %> </li>
+    <li><%- pl.name %> <button class="delete-playlist" data-id="<%- pl.resource_uri %>">x</button></li>
   <% }) %>
 </ul>

@@ -1,4 +1,4 @@
-define ['text!./playlist.html', 'collections/tracks', 'models/playlist'], (viewTemplate, Tracks, Playlist) ->
+define ['text!./playlist.html', 'collections/tracks'], (viewTemplate, Tracks) ->
   Backbone.View.extend
     initialize: ->
       @playlists = @options.playlists
@@ -9,6 +9,9 @@ define ['text!./playlist.html', 'collections/tracks', 'models/playlist'], (viewT
       .fail (req, err) ->
         console.log err      
 
+      @playlists.on "change", => @render()
+      @playlists.on "remove", => @render()
+      
     render: ->
       @$el.html _.template(viewTemplate, {playlists: @playlists.toJSON()})
       @
@@ -16,18 +19,14 @@ define ['text!./playlist.html', 'collections/tracks', 'models/playlist'], (viewT
     onSaveClick: (evt) ->
       return unless @playing.track()
       
-      #tracks = new Tracks()
-
-      #@playing.track().save().done () =>
-      #tracks.create()
-      new Playlist
+      @playlists.create
         name: @$('.playlist-name').val()
         tracks: new Tracks([@playing.track()])
-      .save()
-        
-      #@playlists.create
-       # name: @$('.playlist-name').val()
-       # tracks: tracks
+
+    onDeleteClick: (evt) ->
+      found = @playlists.get @$(evt.target).data("id")
+      found.destroy() if (found) 
 
     events: 
       'click .save-playlist': 'onSaveClick'
+      'click .delete-playlist': 'onDeleteClick'
