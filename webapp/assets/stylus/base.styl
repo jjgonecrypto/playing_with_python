@@ -40,7 +40,7 @@ ul.inline
 
 .two-column 
   overflow hidden
-  > section
+  > div
     float: left
     width: 50%
 
@@ -48,6 +48,8 @@ ul.inline
   margin 5px 0px
   min-height $embed-height
   color #666
+  h3 
+    color white
   a
     color lime
   .artist
@@ -57,13 +59,15 @@ ul.inline
     font-size 90%
   li:nth-child(odd) 
     background-color #222
+  .query 
+    font-style italic
+    color yellow
 
 .player
   padding 5px 0px 
   .player-controls
-    float left
+    float none
   .now-playing
-    float left
     width 250
     display none
     color #666
@@ -97,8 +101,18 @@ ul.inline
       background-image url(../img/button-stop.png)
     &.next
       background-image url(../img/button-next.png)
-      
+  .timer
+    float right
+    color #888 
+    font-size 80%     
 
+.playlists
+  li
+    overflow hidden
+  li:nth-row(odd) 
+    background-color #555
+  .delete-playlist 
+    float right
 footer
   position fixed
   bottom 0

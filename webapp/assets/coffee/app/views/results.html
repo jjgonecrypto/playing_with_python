@@ -1,12 +1,47 @@
-<ul>
-  <% _.each(entries, function(entry){ %>
-    <% if (entry.type === 'tracks') { %>
-      <li>
-        <a href="#" class="play" data-href="<%= entry.href %>"><%- entry.name %></a> 
-        by <span class="artist"><%- entry.artist %></span>
-      </li>
-    <% } else { %>
-      <li><%- entry.name %></li>
-    <% } %>
-  <% }); %>
-</ul>
+<% if (!entries.query) { %>
+  
+  <div>Start typing above...</div>
+
+<% } else { %>
+
+  <% if (entries.tracks.length) { %>
+    <h3>Tracks</h3>
+    <ul class="tracks">
+      <% _.each(entries.tracks, function(track){ %>
+          <li>
+            <a href="#" class="play" data-href="<%= track.href %>"><%- track.name %></a> 
+            by <span class="artist"><%- track.artist %></span>
+          </li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    <div>No tracks found for query: <span class="query"><%- entries.query %></span>.</div>
+  <% } %>
+
+  <% if (entries.artists.length) { %>
+    <h3>Artists</h3>
+    <ul class="artists">
+      <% _.each(entries.artists, function(artist){ %>
+          <li>
+            <%- artist.name %>
+          </li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    <div>No artists found for query: <span class="query"><%- entries.query %></span>.</div>
+  <% } %>
+
+  <% if (entries.albums.length) { %>
+    <h3>Albums</h3>
+    <ul class="albums">
+      <% _.each(entries.albums, function(album){ %>
+          <li>
+            <%- album.name %> by <span class="artist"><%- album.artist %></span>
+          </li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    <div>No albums found for query: <span class="query"><%- entries.query %></span>.</div>
+  <% } %>
+
+<% } %>

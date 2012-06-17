@@ -127,6 +127,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pipeline',
+    'tastypie',
+    'app',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
@@ -160,7 +162,8 @@ PIPELINE_JS = {
     'deps': {
         'source_filenames': (
             'js/underscore-min.js',
-            'js/backbone-min.js'
+            'js/backbone-min.js',
+            'js/backbone-tastypie.js',
         )
     },
     'app': {

@@ -1,9 +1,10 @@
 define [], () ->
   Backbone.Model.extend
+    urlRoot: '/api/v1/track'
+
     defaults:
       name: ""
       href: ""
-      type: ""
       artist: ""
       album: ""
       length: 1
