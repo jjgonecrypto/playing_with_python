@@ -12,7 +12,9 @@ define ['text!./results.html', 'libs/eventbus'], (viewTemplate, bus) ->
     playTrack: (evt) ->
       evt.preventDefault()
       href = @$(evt.target).data("href")
-      bus.trigger "player:play", href
+      track = @entries.find (entry) -> entry.get('href') is href
+      
+      bus.trigger 'playing:set', track 
 
     events:
       'click .play': 'playTrack'
