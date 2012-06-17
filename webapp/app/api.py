@@ -7,3 +7,4 @@ class PlaylistResource(ModelResource):
         queryset = Playlist.objects.all()
         resource_name = 'playlist'
         authorization= Authorization() #note: INSECURE - for demo purposes only
+        

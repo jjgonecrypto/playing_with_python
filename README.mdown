@@ -9,4 +9,7 @@
 
 ##pushing to heroku
 
-* see instruction on [https://github.com/justinjmoses/django-coffee-stylus-heroku](https://github.com/justinjmoses/django-coffee-stylus-heroku)
+* see instructions on [https://github.com/justinjmoses/django-coffee-stylus-heroku](https://github.com/justinjmoses/django-coffee-stylus-heroku) for setting up an appropriate heroku stack with both `python` and `node` support.
+
+
+* run `heroku run python manage.py syncdb` to setup the database
