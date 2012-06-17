@@ -1,14 +1,9 @@
-define ['text!./search.html','collections/entries', 'libs/eventbus'], (viewTemplate, Entries, bus) ->
+define ['text!./search.html', 'libs/eventbus'], (viewTemplate, bus) ->
   Backbone.View.extend
     initialize: ->
       @lastQuery = undefined
-      @entries = @options.entries
+      @tracks = @options.entries.tracks
       
-      bus.on 'search:start', (evt) =>
-        @$('.loading').show()
-
-      bus.on 'search:stop', (evt) =>
-        @$('.loading').hide()
 
     render: ->
       @$el.html viewTemplate
@@ -16,14 +11,22 @@ define ['text!./search.html','collections/entries', 'libs/eventbus'], (viewTempl
 
     search: (evt) ->
       return if @$(evt.target).val().length < 3 or @lastQuery is @$(evt.target).val()
-      @entries.load @$(evt.target).serialize()
+
+      query = @$(evt.target).serialize()
+
+      @$('.loading').show()
+
+      @tracks.load query, (err) =>
+        console.log(err) if err
+        #@artists.load query, (err) =>
+        #  console.log(err) if err
+        #  @albums.load query, (err) =>
+        #    console.log(err) if err
+        #    @$('.loading').hide()
+        @$('.loading').hide()
+
       @lastQuery = @$(evt.target).val() 
 
-    playSong: (trackId) ->
-      #return if @playing is trackId
-      #$('.play-controls').html "<iframe src='https://embed.spotify.com/?uri=#{trackId}' frameborder='0' allowtransparency='true'></iframe>"
-      #@playing = trackId
-      
     events: 
       'keyup .spotify-lookup': 'search'
       'change .spotify-lookup': 'search'

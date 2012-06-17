@@ -1,12 +1,9 @@
+<h3>tracks</h3>
 <ul>
-  <% _.each(entries, function(entry){ %>
-    <% if (entry.type === 'tracks') { %>
+  <% _.each(tracks, function(track){ %>
       <li>
-        <a href="#" class="play" data-href="<%= entry.href %>"><%- entry.name %></a> 
-        by <span class="artist"><%- entry.artist %></span>
+        <a href="#" class="play" data-href="<%= track.href %>"><%- track.name %></a> 
+        by <span class="artist"><%- track.artist %></span>
       </li>
-    <% } else { %>
-      <li><%- entry.name %></li>
-    <% } %>
   <% }); %>
 </ul>

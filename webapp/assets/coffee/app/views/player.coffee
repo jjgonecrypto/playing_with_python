@@ -2,7 +2,6 @@ define ['text!./player.html', 'libs/eventbus', 'libs/format'], (viewTemplate, bu
   Backbone.View.extend
     initialize: ->
       @playing = @options.playing
-      @entries = @options.entries
       @playing.on 'start', (track) =>
         @showPlaying() 
 
