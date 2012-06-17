@@ -163,7 +163,7 @@ PIPELINE_JS = {
         'source_filenames': (
             'js/underscore-min.js',
             'js/backbone-min.js',
-            'js/backbone.localStorage-min.js',
+            'js/backbone-tastypie.js',
         )
     },
     'app': {

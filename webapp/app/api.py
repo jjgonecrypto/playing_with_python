@@ -5,6 +5,5 @@ from tastypie.authorization import Authorization
 class PlaylistResource(ModelResource):
     class Meta:
         queryset = Playlist.objects.all()
-        resource_name = 'playlist'
+        resource_name = 'playlists'
         authorization= Authorization() #note: INSECURE - for demo purposes only
-        
