@@ -27,5 +27,5 @@ define [
       @$('.search').html new Search({entries: entries}).render().el
       @$('.results').html new Results({entries: entries}).render().el
       @$('.player').html new Player({entries: entries, playing: @playing}).render().el
-      @$('.playlists').html new PlaylistView({playlists: @playlists}).render().el
+      @$('.playlists').html new PlaylistView({playlists: @playlists, playing: @playing}).render().el
       @

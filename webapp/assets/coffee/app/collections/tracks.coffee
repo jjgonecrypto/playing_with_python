@@ -1,6 +1,7 @@
 define ['models/track', 'services/spotify'], (Track, spotify) ->
   Backbone.Collection.extend
     model: Track
+    url: '/api/v1/track'
 
     initialize: ->
 
