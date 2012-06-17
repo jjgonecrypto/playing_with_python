@@ -21,7 +21,7 @@ define ['libs/eventbus'], (bus) ->
 
     start: (track) ->
       eachSecond = () =>
-        @stop() if @get 'position' >= track.get('length')
+        return @stop() if @get 'position' >= track.get('length')
         @set 'position', (@get('position')+1)
         @trigger 'tick', @get('position')
         

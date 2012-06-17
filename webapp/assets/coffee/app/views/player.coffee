@@ -1,4 +1,4 @@
-define ['text!./player.html', 'libs/eventbus'], (viewTemplate, bus) ->
+define ['text!./player.html', 'libs/eventbus', 'libs/format'], (viewTemplate, bus, format) ->
   Backbone.View.extend
     initialize: ->
       @playing = @options.playing
@@ -9,7 +9,7 @@ define ['text!./player.html', 'libs/eventbus'], (viewTemplate, bus) ->
       @playing.on 'tick', (position) =>
         @$('.now-playing .progress-bar').progressbar
           value: position / @playing.track().get('length') * 100
-        @$('.now-playing .elapsed').html @timeFormat(@playing.get('position')) 
+        @$('.now-playing .elapsed').html format.time(@playing.get('position')) 
           
     render: ->
       @$el.html viewTemplate
@@ -21,7 +21,7 @@ define ['text!./player.html', 'libs/eventbus'], (viewTemplate, bus) ->
       @$('.now-playing .track').html @playing.track().get('name')
       @$('.now-playing .artist').html @playing.track().get('artist')
       @$('.now-playing .album').html @playing.track().get('album')
-      @$('.now-playing .total').html @timeFormat(@playing.track().get('length')) 
+      @$('.now-playing .total').html format.time(@playing.track().get('length')) 
         
       @$('.info').html "Now Playing: "
       @$('.now-playing').fadeTo(250, 1)
@@ -39,11 +39,6 @@ define ['text!./player.html', 'libs/eventbus'], (viewTemplate, bus) ->
     onStopPress: (evt) -> 
       bus.trigger 'player:stop'
       @showStopped()
-
-    timeFormat: (length) ->
-      secs = Math.round(length % 60)
-      secs = "0"+secs if secs < 10
-      Math.round(length / 60) + ":" + secs
 
     events: 
       'click .play': 'onPlayPress'
