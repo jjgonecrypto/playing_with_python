@@ -2,8 +2,19 @@ require.config
   baseUrl: '/static/coffee/app' 
   paths: 
     text: '/static/js/require.text'
+    underscore: '/static/js/underscore-min'
+    backbone: '/static/js/backbone-min'
+    backboneTP: '/static/js/backbone-tastypie'
+  shim:
+    underscore:
+      exports: '_'
+    backbone:
+      deps: ["underscore"]
+      exports: "Backbone"
+    backboneTP: 
+      deps: ["backbone"]
 
-define ["views/container"], (Container) ->
+define ["backboneTP", "views/container"], (bb, Container) ->
   $ ->
     ###
     Backbone.sync = (method, model, options) ->
