@@ -19,10 +19,7 @@
   {% compressed_css 'custom' %}
 
 </head>
-<body>
-  
-    {% compressed_js 'deps' %}
-    
-    <!-- This is the ridiculousness of using django-pipeline: {% compressed_js 'app' %} -->
+<body>  
+    <!-- This is the ridiculousness of using django-pipeline. Have to output it to ensure the precompiler runs (but using require to load so don't add them here: {% compressed_js 'app' %} -->
 </body>
 </html>

@@ -11,7 +11,7 @@ class TrackResource(ModelResource):
         authorization= Authorization() #note: INSECURE - for demo purposes only
 
 class PlaylistResource(ModelResource):
-    tracks = fields.ToManyField(TrackResource, 'tracks')
+    tracks = fields.ToManyField(TrackResource, 'tracks', full=True)
     
     class Meta:
         queryset = Playlist.objects.all()

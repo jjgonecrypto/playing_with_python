@@ -3,7 +3,7 @@ define ['text!./search.html', 'libs/eventbus'], (viewTemplate, bus) ->
     initialize: ->
       @lastQuery = undefined
       @entries = @options.entries
-      
+
     render: ->
       @$el.html viewTemplate
       @  
@@ -25,7 +25,7 @@ define ['text!./search.html', 'libs/eventbus'], (viewTemplate, bus) ->
           @entries.albums.load query, (err) =>
             console.log(err) if err
             @$('.loading').hide()
-        
+      
     events: 
       'keyup .spotify-lookup': 'search'
       'change .spotify-lookup': 'search'
