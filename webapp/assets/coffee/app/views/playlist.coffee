@@ -29,6 +29,7 @@ define ['text!./playlist.html', 'collections/tracks', 'libs/eventbus'], (viewTem
       found.destroy() if (found) 
 
     onLoadClick: (evt) ->
+      @playing.stop()
       found = @playlists.get @$(evt.target).data("id")
       @queue.replace new Tracks(found.get('tracks'))
       
