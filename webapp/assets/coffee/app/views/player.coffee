@@ -5,6 +5,12 @@ define ['text!./player.html', 'libs/eventbus', 'libs/format'], (viewTemplate, bu
       @playing.on 'start', (track) =>
         @showPlaying() 
 
+      @playing.on 'stop', =>
+        @showStopped()
+
+      @playing.on 'clear', =>
+        @showNone()
+
       @playing.on 'tick', (position) =>
         @$('.now-playing .progress-bar').progressbar
           value: position / @playing.track().get('length') * 100
@@ -29,6 +35,11 @@ define ['text!./player.html', 'libs/eventbus', 'libs/format'], (viewTemplate, bu
       @$('.now-playing').fadeTo(250, 0.5)
       @$('.info').html "Stopped: "
       @$('.btn.stop').removeClass('stop').addClass('play')
+
+    showNone: ->
+      @$('.now-playing .track').html ""
+      @$('.now-playing .artist').html ""
+      @$('.now-playing .album').html ""
 
     onPlayPress: (evt) -> 
       return unless @playing.track()

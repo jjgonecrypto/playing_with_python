@@ -20,5 +20,13 @@ define ['text!./queue.html','libs/eventbus'], (viewTemplate, bus) ->
       track = @queue.findBy @$(evt.target).data("href")
       bus.trigger 'playing:set', track 
 
+    removeTrack: (evt) ->
+      evt.preventDefault()
+      track = @queue.findBy @$(evt.target).data("href")
+      @playing.clear() if @playing.get('track') is track 
+      @queue.remove track
+      @render()
+      
     events:
       'click .play': 'playTrack'
+      'click .remove': 'removeTrack'

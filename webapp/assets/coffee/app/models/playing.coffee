@@ -34,4 +34,9 @@ define ['libs/eventbus'], (bus) ->
       @set 'is_playing', false
       @trigger 'stop'
 
+    clear: ->
+      @stop()
+      @set 'track', null
+      @trigger 'clear'
+      
     track: -> @get('track') 

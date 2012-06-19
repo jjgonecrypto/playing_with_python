@@ -12,7 +12,10 @@ define [], () ->
 
     findBy: (href) ->
       @get('tracks').find (t) -> t.get('href') is href
-      
+
+    remove: (track) ->
+      @get('tracks').remove track
+        
     toFullJSON: () ->
       output = @toJSON()
       output.tracks = @get('tracks').toJSON() 
