@@ -3,7 +3,8 @@
 <div class="helper">Click a playlist to load in queue</div>
 <ul class="items">
   <% _.each(playlists, function(pl) { %>
-    <li><a href="#" class="load" data-href="<%= pl.resource_uri %>"><%- pl.name %></a> <button class="delete" data-id="<%- pl.resource_uri %>">x</button></li>
+    <li><a href="#" class="load" data-id="<%= pl.resource_uri %>"><%- pl.name %></a> 
+      <button class="delete" data-id="<%- pl.resource_uri %>">x</button></li>
   <% }) %>
 </ul>
 

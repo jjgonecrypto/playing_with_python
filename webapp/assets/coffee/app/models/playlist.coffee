@@ -1,4 +1,4 @@
-define [], () ->
+define ['collections/tracks'], (Tracks) ->
   Backbone.Model.extend
     urlRoot: '/api/v1/playlist'
     defaults:
@@ -15,7 +15,11 @@ define [], () ->
 
     remove: (track) ->
       @get('tracks').remove track
-        
+
+    replace: (tracks) ->
+      @set 'tracks', tracks
+      @trigger 'replaced'
+
     toFullJSON: () ->
       output = @toJSON()
       output.tracks = @get('tracks').toJSON() 

@@ -28,6 +28,11 @@ define ['text!./playlist.html', 'collections/tracks'], (viewTemplate, Tracks) ->
       found = @playlists.get @$(evt.target).data("id")
       found.destroy() if (found) 
 
+    onLoadClick: (evt) ->
+      found = @playlists.get @$(evt.target).data("id")
+      @queue.replace new Tracks(found.get('tracks'))
+
     events: 
       'click .save': 'onSaveClick'
       'click .delete': 'onDeleteClick'
+      'click .load': 'onLoadClick'

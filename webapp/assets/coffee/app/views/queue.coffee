@@ -8,6 +8,8 @@ define ['text!./queue.html','libs/eventbus'], (viewTemplate, bus) ->
         @queue.append track
         @render()
 
+      @queue.on 'replaced', () => @render() 
+
     render: ->
       @$el.html _.template(viewTemplate, 
         queue: @queue.toFullJSON()
@@ -26,7 +28,7 @@ define ['text!./queue.html','libs/eventbus'], (viewTemplate, bus) ->
       @playing.clear() if @playing.get('track') is track 
       @queue.remove track
       @render()
-      
+
     events:
       'click .play': 'playTrack'
       'click .remove': 'removeTrack'
