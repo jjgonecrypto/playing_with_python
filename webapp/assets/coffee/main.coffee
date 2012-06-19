@@ -2,6 +2,7 @@ require.config
   baseUrl: '/static/coffee/app' 
   paths: 
     text: '/static/js/require.text'
+###JM: this should work - but getting intermittent Backbone not defined errors
     underscore: '/static/js/underscore-min'
     backbone: '/static/js/backbone-min'
     backboneTP: '/static/js/backbone-tastypie'
@@ -13,8 +14,8 @@ require.config
       exports: "Backbone"
     backboneTP: 
       deps: ["backbone"]
-
-define ["backboneTP", "views/container"], (bb, Container) ->
+###
+define ["views/container"], (Container) ->
   $ ->
     new Container
       el: 'body'

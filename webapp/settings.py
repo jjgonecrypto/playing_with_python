@@ -159,6 +159,13 @@ PIPELINE_CSS = {
 }
 
 PIPELINE_JS = {
+    'deps': {
+        'source_filenames': (
+            'js/underscore-min.js',
+            'js/backbone-min.js',
+            'js/backbone-tastypie.js',
+        )
+    },
     'app': {
         'source_filenames': (
           'coffee/main.coffee',
