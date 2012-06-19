@@ -19,14 +19,16 @@ define ['libs/eventbus'], (bus) ->
       bus.on 'player:stop', () => @stop()
       bus.on 'player:play', () => @start @get('track')
 
+    eachSecond: (track) ->
+      return @stop() if @get('position')+1 >= @get('track').get('length')
+      @set 'position', (@get('position')+1)
+      @trigger 'tick', @get('position')
+
     start: (track) ->
-      eachSecond = () =>
-        return @stop() if @get 'position' >= track.get('length')
-        @set 'position', (@get('position')+1)
-        @trigger 'tick', @get('position')
-        
-      @interval = setInterval eachSecond, 1000
-      eachSecond() #first run at 0s
+      @interval = setInterval () =>
+        @eachSecond()
+      , 20 
+      @eachSecond() #first run at 0s
       @trigger 'start', track
 
     stop: ->
@@ -38,5 +40,5 @@ define ['libs/eventbus'], (bus) ->
       @stop()
       @set 'track', null
       @trigger 'clear'
-      
+
     track: -> @get('track') 
