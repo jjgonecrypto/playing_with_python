@@ -3,6 +3,7 @@ define ['text!./playlist.html', 'collections/tracks'], (viewTemplate, Tracks) ->
     initialize: ->
       @playlists = @options.playlists
       @playing = @options.playing
+      @queue = @options.queue
 
       @playlists.fetch().done (data) =>
         @render()
@@ -17,11 +18,11 @@ define ['text!./playlist.html', 'collections/tracks'], (viewTemplate, Tracks) ->
       @
 
     onSaveClick: (evt) ->
-      return unless @playing.track()
+      return unless @queue.get('tracks')?.length
       
       @playlists.create
         name: @$('.playlist-name').val()
-        tracks: new Tracks([@playing.track()])
+        tracks: @queue.get('tracks')
 
     onDeleteClick: (evt) ->
       found = @playlists.get @$(evt.target).data("id")

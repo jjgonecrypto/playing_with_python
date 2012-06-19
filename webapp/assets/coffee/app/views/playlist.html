@@ -1,9 +1,16 @@
 <h3>Playlists</h3>
-<div>
-  <input type="text" class="playlist-name" value="playlist 1" />&nbsp;<button class="save">save as playlist</button>
-</div>
+
+<div class="helper">Click a playlist to load in queue</div>
 <ul class="items">
   <% _.each(playlists, function(pl) { %>
-    <li><%- pl.name %> <button class="delete" data-id="<%- pl.resource_uri %>">x</button></li>
+    <li><a href="#" class="load" data-href="<%= pl.resource_uri %>"><%- pl.name %></a> <button class="delete" data-id="<%- pl.resource_uri %>">x</button></li>
   <% }) %>
 </ul>
+
+<div>
+  <h4>Create From Queue</h4>
+  <ul class="inline">
+    <li><label class="helper" for"playlist-name-input">Name: </label></li>
+    <li><input id="playlist-name-input" type="text" class="playlist-name" value="my queue" /></li>
+    <li><button class="save">save</button></li>
+</div>
