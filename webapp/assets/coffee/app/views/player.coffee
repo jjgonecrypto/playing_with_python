@@ -2,6 +2,7 @@ define ['text!./player.html', 'libs/eventbus', 'libs/format'], (viewTemplate, bu
   Backbone.View.extend
     initialize: ->
       @playing = @options.playing
+      @queue = @options.queue
       @playing.on 'start', (track) =>
         @showPlaying() 
 
@@ -50,6 +51,16 @@ define ['text!./player.html', 'libs/eventbus', 'libs/format'], (viewTemplate, bu
       bus.trigger 'player:stop'
       @showStopped()
 
+    onNextPress: (evt) ->
+      next = @queue.next(@playing.track())
+      if next then bus.trigger 'playing:set', next 
+
+    onPrevPress: (evt) ->
+      prev = @queue.prev(@playing.track())
+      if prev then bus.trigger 'playing:set', prev
+        
     events: 
       'click .play': 'onPlayPress'
       'click .stop': 'onStopPress'
+      'click .next': 'onNextPress'
+      'click .prev': 'onPrevPress'

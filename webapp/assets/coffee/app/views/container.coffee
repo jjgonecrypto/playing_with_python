@@ -30,7 +30,7 @@ define [
       @$el.html viewTemplate
       @$('.search').html new Search({entries: entries}).render().el
       @$('.results').html new Results({entries: entries}).render().el
-      @$('.player').html new Player({entries: entries, playing: @playing}).render().el
+      @$('.player').html new Player({entries: entries, playing: @playing, queue: @queue}).render().el
       @$('.queue').html new Queue({queue: @queue, playing: @playing}).render().el
       @$('.playlists').html new PlaylistView({playlists: @playlists, playing: @playing, queue: @queue}).render().el
       @

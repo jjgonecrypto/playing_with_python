@@ -1,4 +1,4 @@
-define ['text!./playlist.html', 'collections/tracks'], (viewTemplate, Tracks) ->
+define ['text!./playlist.html', 'collections/tracks', 'libs/eventbus'], (viewTemplate, Tracks, bus) ->
   Backbone.View.extend
     initialize: ->
       @playlists = @options.playlists
@@ -31,6 +31,8 @@ define ['text!./playlist.html', 'collections/tracks'], (viewTemplate, Tracks) ->
     onLoadClick: (evt) ->
       found = @playlists.get @$(evt.target).data("id")
       @queue.replace new Tracks(found.get('tracks'))
+      
+      if @queue.first() then bus.trigger 'playing:set', @queue.first()
 
     events: 
       'click .save': 'onSaveClick'
