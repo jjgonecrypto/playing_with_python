@@ -1,0 +1,14 @@
+<h3>Your Queue</h3>
+
+<% if (!queue.tracks.length) {%>
+  <div class="helper">... is empty.</div>
+
+<% } %>
+
+<ul class="items">
+<% _.each(queue.tracks, function(track) { %>
+
+  <li<% if (playingTrack && playingTrack.href == track.href) {%> class="active"<%}%>>
+     <a href="#" class="play" data-href="<%= track.href %>"><%- track.name %></a>  by <span class="artist"><%- track.artist %></span> <button class="remove" data-href="<%- track.href %>">x</button></li>
+<% }) %>
+</ul>

@@ -1,8 +1,9 @@
-define ['text!./playlist.html', 'collections/tracks'], (viewTemplate, Tracks) ->
+define ['text!./playlist.html', 'collections/tracks', 'libs/eventbus'], (viewTemplate, Tracks, bus) ->
   Backbone.View.extend
     initialize: ->
       @playlists = @options.playlists
       @playing = @options.playing
+      @queue = @options.queue
 
       @playlists.fetch().done (data) =>
         @render()
@@ -17,16 +18,24 @@ define ['text!./playlist.html', 'collections/tracks'], (viewTemplate, Tracks) ->
       @
 
     onSaveClick: (evt) ->
-      return unless @playing.track()
+      return unless @queue.get('tracks')?.length
       
       @playlists.create
         name: @$('.playlist-name').val()
-        tracks: new Tracks([@playing.track()])
+        tracks: @queue.get('tracks')
 
     onDeleteClick: (evt) ->
       found = @playlists.get @$(evt.target).data("id")
       found.destroy() if (found) 
 
+    onLoadClick: (evt) ->
+      @playing.stop()
+      found = @playlists.get @$(evt.target).data("id")
+      @queue.replace new Tracks(found.get('tracks'))
+      
+      if @queue.first() then bus.trigger 'playing:set', @queue.first()
+
     events: 
-      'click .save-playlist': 'onSaveClick'
-      'click .delete-playlist': 'onDeleteClick'
+      'click .save': 'onSaveClick'
+      'click .delete': 'onDeleteClick'
+      'click .load': 'onLoadClick'

@@ -9,7 +9,6 @@ class Track(models.Model):
     length = models.DecimalField(max_digits=10, decimal_places=2)
     
 class Playlist(models.Model):
-    #user = models.ForeignKey(User)
     name =  models.CharField(max_length=512)
     tracks = models.ManyToManyField(Track)
 
