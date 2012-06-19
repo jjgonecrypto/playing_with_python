@@ -20,7 +20,7 @@ define ['libs/eventbus'], (bus) ->
       bus.on 'player:play', () => @start @get('track')
 
     eachSecond: (track) ->
-      return @stop() if @get('position')+1 >= @get('track').get('length')
+      return @stop() and @trigger 'finished' if @get('position')+1 >= @get('track').get('length')
       @set 'position', (@get('position')+1)
       @trigger 'tick', @get('position')
 

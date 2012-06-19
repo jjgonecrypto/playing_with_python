@@ -17,6 +17,8 @@ define ['text!./player.html', 'libs/eventbus', 'libs/format'], (viewTemplate, bu
           value: position / @playing.track().get('length') * 100
         @$('.now-playing .elapsed').html format.time(@playing.get('position')) 
           
+      @playing.on 'finished', => @onNext()
+
     render: ->
       @$el.html viewTemplate
       @
@@ -42,25 +44,25 @@ define ['text!./player.html', 'libs/eventbus', 'libs/format'], (viewTemplate, bu
       @$('.now-playing .artist').html ""
       @$('.now-playing .album').html ""
 
-    onPlayPress: (evt) -> 
+    onPlay: () -> 
       return unless @playing.track()
       bus.trigger 'player:play'
       @showPlaying()
 
-    onStopPress: (evt) -> 
+    onStop: () -> 
       bus.trigger 'player:stop'
       @showStopped()
 
-    onNextPress: (evt) ->
+    onNext: () ->
       next = @queue.next(@playing.track())
       if next then bus.trigger 'playing:set', next 
 
-    onPrevPress: (evt) ->
+    onPrev: () ->
       prev = @queue.prev(@playing.track())
       if prev then bus.trigger 'playing:set', prev
-        
+
     events: 
-      'click .play': 'onPlayPress'
-      'click .stop': 'onStopPress'
-      'click .next': 'onNextPress'
-      'click .prev': 'onPrevPress'
+      'click .play': 'onPlay'
+      'click .stop': 'onStop'
+      'click .next': 'onNext'
+      'click .prev': 'onPrev'
