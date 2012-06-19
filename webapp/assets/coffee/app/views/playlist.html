@@ -1,8 +1,9 @@
+<h3>Playlists</h3>
 <div>
-  <button class="save-playlist">save as playlist</button>&nbsp;<input type="text" class="playlist-name" value="playlist 1" />
+  <input type="text" class="playlist-name" value="playlist 1" />&nbsp;<button class="save">save as playlist</button>
 </div>
-<ul>
+<ul class="items">
   <% _.each(playlists, function(pl) { %>
-    <li><%- pl.name %> <button class="delete-playlist" data-id="<%- pl.resource_uri %>">x</button></li>
+    <li><%- pl.name %> <button class="delete" data-id="<%- pl.resource_uri %>">x</button></li>
   <% }) %>
 </ul>

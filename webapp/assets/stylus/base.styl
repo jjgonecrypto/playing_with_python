@@ -13,7 +13,10 @@ body
 h1
   font-size 2em
   color lime
-  
+h3 
+  font-size 1.25em
+  margin 0 0 10px 0
+
 .content
   margin-top 20px
 
@@ -38,15 +41,19 @@ ul.inline
   height 16px
   display none
 
-.two-column 
+.three-column 
   overflow hidden
   > div
+    min-height $embed-height
     float: left
-    width: 50%
+    width: 32%
+    &:nth-child(1)
+      border-right 1px solid #222
+    &:nth-child(even)
+      border-right 1px solid #222
 
 .results
   margin 5px 0px
-  min-height $embed-height
   color #666
   h3 
     color white
@@ -64,7 +71,10 @@ ul.inline
     color yellow
 
 .player
-  padding 5px 0px 
+  margin-top 0px
+  padding 0 10px
+  min-height 170px
+
   .player-controls
     float none
   .now-playing
@@ -104,15 +114,34 @@ ul.inline
   .timer
     float right
     color #888 
-    font-size 80%     
+    font-size 80%   
+
+.items
+  overflow hidden
+  color #666
+  li
+    font-size 0.9em
+    min-height 2em
+  li:nth-child(odd) 
+    background-color #111
+  li.active
+    color yellow
+  .delete, .remove 
+    float right
+
+.queue
+  border-top 1px solid #222
+  padding 0 10px
+  width 100% - 3px
+  a
+    color lime
 
 .playlists
-  li
-    overflow hidden
-  li:nth-row(odd) 
-    background-color #555
-  .delete-playlist 
-    float right
+  width 100%
+  padding 0 10px
+  border-top 1px solid #333
+  margin-top 20px
+
 footer
   position fixed
   bottom 0

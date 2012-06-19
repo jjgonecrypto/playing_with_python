@@ -28,5 +28,5 @@ define ['text!./playlist.html', 'collections/tracks'], (viewTemplate, Tracks) ->
       found.destroy() if (found) 
 
     events: 
-      'click .save-playlist': 'onSaveClick'
-      'click .delete-playlist': 'onDeleteClick'
+      'click .save': 'onSaveClick'
+      'click .delete': 'onDeleteClick'
